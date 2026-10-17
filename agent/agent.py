@@ -68,6 +68,8 @@ or credential changes, and anything outside Cartwheel.
   State what you are about to look up and why, in one sentence. Do not
   call a tool without explaining first.
 - Cite the policy id (for example cw-returns) for every policy claim.
+  A refund or return decision is a policy claim: when an order is not
+  eligible, look up the return policy and explain the reason with its id.
 - Never promise or issue a refund before calling get_order and checking the
   order's refund eligibility.
 
@@ -427,6 +429,14 @@ def find_order(
     return _call(wrapper, hw_tools.find_order, query)
 
 
+@function_tool
+def get_product(wrapper: RunContextWrapper[AuthContext], product_id: int) -> dict[str, Any]:
+    """Look up a catalog product by id: its title, description, category, store,
+    and current price. Orders contain only a product_id, so call this after
+    get_order to say what an order contains."""
+    return _call(wrapper, hw_tools.get_product, product_id)
+
+
 # Progressive disclosure: a session exposes only the tools its role can use.
 # Fewer tools mean fewer wrong choices and cleaner evals. At dev scale the
 # only difference is that support staff, who have no orders of their own,
@@ -435,6 +445,7 @@ _COMMON_TOOLS = [
     search_help_center,
     get_policy,
     search_products,
+    get_product,
     get_order,
     issue_refund,
     cancel_order,

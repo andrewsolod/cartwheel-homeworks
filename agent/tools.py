@@ -20,6 +20,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from rapidfuzz import fuzz
+
 from agent import db
 from agent.auth import AuthContext, can_cancel_order, permission_denied
 from agent.helpcenter import load_policy_docs
@@ -27,6 +29,8 @@ from agent.killswitch import kill_switch
 
 MAX_SEARCH_LIMIT = 25
 DEFAULT_ORDER_LIMIT = 20
+# find_order: rapidfuzz partial_ratio score (0-100) a product title must reach.
+FIND_ORDER_MIN_SCORE = 80
 
 
 def get_policy(ctx: AuthContext, policy_id: str) -> dict[str, Any]:
@@ -52,8 +56,16 @@ def get_policy(ctx: AuthContext, policy_id: str) -> dict[str, Any]:
     Implementation notes:
         agent.helpcenter.load_policy_docs() returns every parsed doc.
     """
-    ### YOUR CODE HERE (HW1)
-    raise NotImplementedError("HW1: implement get_policy")
+    for doc in load_policy_docs():
+        if doc.policy_id == policy_id:
+            return {
+                "ok": True,
+                "policy_id": doc.policy_id,
+                "title": doc.title,
+                "audience": doc.audience,
+                "body": doc.body,
+            }
+    return {"ok": False, "error": "not_found", "reason": f"no policy with id {policy_id!r}"}
 
 
 def search_products(
@@ -95,8 +107,38 @@ def search_products(
         agent.db.list_products(conn, store_id) gives the candidate set.
         Use `with db.connection() as conn:` to close the database automatically.
     """
-    ### YOUR CODE HERE (HW1)
-    raise NotImplementedError("HW1: implement search_products")
+    tokens = query.lower().split()
+    if not tokens:
+        return {"ok": False, "error": "invalid_argument", "reason": "query must not be empty"}
+    if max_price_usd is not None and max_price_usd <= 0:
+        return {
+            "ok": False,
+            "error": "invalid_argument",
+            "reason": f"max_price_usd must be positive, got {max_price_usd}",
+        }
+    limit = max(1, min(limit, MAX_SEARCH_LIMIT))
+
+    with db.connection() as conn:
+        store_id = None
+        if store is not None:
+            found = db.get_store_by_name(conn, store)
+            if found is None:
+                return {"ok": False, "error": "not_found", "reason": f"no store named {store!r}"}
+            store_id = found.id
+        candidates = db.list_products(conn, store_id)
+
+    matches = [
+        p
+        for p in candidates
+        if all(t in p.title.lower() or t in p.description.lower() for t in tokens)
+        and (max_price_usd is None or p.price_usd <= max_price_usd)
+    ]
+    matches.sort(key=lambda p: (p.price_usd, p.id))
+    products = [
+        {"product_id": p.id, "store_id": p.store_id, "title": p.title, "price_usd": p.price_usd}
+        for p in matches[:limit]
+    ]
+    return {"ok": True, "products": products, "count": len(products)}
 
 
 def list_my_orders(ctx: AuthContext) -> dict[str, Any]:
@@ -121,8 +163,18 @@ def list_my_orders(ctx: AuthContext) -> dict[str, Any]:
         scope is baked into which query you run. That is the point of the
         tool: the model cannot ask for someone else's orders through it.
     """
-    ### YOUR CODE HERE (HW1)
-    raise NotImplementedError("HW1: implement list_my_orders")
+    if ctx.role not in ("shopper", "merchant"):
+        return {
+            "ok": False,
+            "error": "invalid_argument",
+            "reason": "support staff have no orders of their own; look up a specific order with get_order",
+        }
+    with db.connection() as conn:
+        if ctx.role == "shopper":
+            orders = db.list_orders_for_user(conn, ctx.user_id, limit=DEFAULT_ORDER_LIMIT)
+        else:
+            orders = db.list_orders_for_store(conn, ctx.store_id, limit=DEFAULT_ORDER_LIMIT)
+    return {"ok": True, "orders": [o.to_public_dict() for o in orders], "count": len(orders)}
 
 
 def cancel_order(ctx: AuthContext, order_id: int, reason: str) -> dict[str, Any]:
@@ -167,8 +219,25 @@ def cancel_order(ctx: AuthContext, order_id: int, reason: str) -> dict[str, Any]
     paused = kill_switch("cancel_order")
     if paused is not None:
         return {"ok": False, "error": "paused", "reason": paused}
-    ### YOUR CODE HERE (HW1)
-    raise NotImplementedError("HW1: implement cancel_order")
+    with db.connection() as conn:
+        order = db.get_order(conn, order_id)
+        if order is None:
+            return {"ok": False, "error": "not_found", "reason": f"no order #{order_id}"}
+        if not can_cancel_order(ctx, order.user_id, order.store_id):
+            return permission_denied(
+                f"role '{ctx.role}' (user {ctx.user_id}) may not cancel order #{order_id}"
+            )
+        if order.status != "placed":
+            return {
+                "ok": False,
+                "error": "not_eligible",
+                "reason": (
+                    f"order #{order_id} is '{order.status}'; orders can be cancelled "
+                    "only before shipment"
+                ),
+            }
+        db.set_order_status(conn, order_id, "cancelled")
+    return {"ok": True, "order_id": order_id, "status": "cancelled"}
 
 
 def find_order(ctx: AuthContext, query: str) -> dict[str, Any]:
@@ -202,5 +271,65 @@ def find_order(ctx: AuthContext, query: str) -> dict[str, Any]:
         (at most 5), each as the dict returned by agent.db. If no orders
         match, return {"ok": True, "orders": []}.
     """
-    ### YOUR CODE HERE (HW1)
-    raise NotImplementedError("HW1: implement find_order")
+    if ctx.role == "shopper" and ctx.user_id is not None:
+        scope = {"user_id": ctx.user_id}
+    elif ctx.role == "merchant" and ctx.store_id is not None:
+        scope = {"store_id": ctx.store_id}
+    elif ctx.role == "support":
+        scope = {"all_orders": True}
+    else:
+        return permission_denied(
+            f"role '{ctx.role}' (user {ctx.user_id}, store {ctx.store_id}) may not search orders"
+        )
+
+    needle = query.strip().lower()
+    if not needle:
+        return {"ok": True, "orders": []}
+    with db.connection() as conn:
+        titles = {p.id: p.title.lower() for p in db.list_products(conn)}
+        candidates = db.list_order_search_candidates(conn, **scope)
+    matches = [
+        o
+        for o in candidates
+        if fuzz.partial_ratio(needle, titles.get(o.product_id, "")) >= FIND_ORDER_MIN_SCORE
+    ]
+    return {"ok": True, "orders": [o.to_public_dict() for o in matches[:5]]}
+
+
+def get_product(ctx: AuthContext, product_id: int) -> dict[str, Any]:
+    """Fetch one catalog product by id. Risk tier: read.
+
+    Order records carry only product_id, so this is how the agent learns what
+    an order actually contains (call get_order first, then get_product with
+    the order's product_id). The catalog is public, as with search_products,
+    so every role may read every product and no permission check is needed.
+
+    Args:
+        ctx: The caller's auth context. Unused here, but every tool takes it.
+        product_id: The product's id, e.g. the product_id of an order.
+
+    Returns:
+        On success: {"ok": True, "product": {"product_id": int,
+        "store_id": int, "store_name": str | None, "title": str,
+        "description": str, "category": str, "price_usd": float}}. price_usd
+        is the current catalog price, which may differ from what an order paid.
+        If no product has that id: {"ok": False, "error": "not_found",
+        "reason": ...} naming the id that was requested.
+    """
+    with db.connection() as conn:
+        product = next((p for p in db.list_products(conn) if p.id == product_id), None)
+        if product is None:
+            return {"ok": False, "error": "not_found", "reason": f"no product #{product_id}"}
+        store = db.get_store(conn, product.store_id)
+    return {
+        "ok": True,
+        "product": {
+            "product_id": product.id,
+            "store_id": product.store_id,
+            "store_name": store.name if store else None,
+            "title": product.title,
+            "description": product.description,
+            "category": product.category,
+            "price_usd": product.price_usd,
+        },
+    }
