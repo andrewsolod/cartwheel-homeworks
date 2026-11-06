@@ -1,0 +1,103 @@
+# Scenario dimensions for the Homework 3 trace dataset.
+#
+# Approved at the Part A review (2026-11-03). Every scenario tuple in
+# pilot_scenarios.jsonl and support_scenarios.jsonl takes one value per
+# dimension from this file. Each dimension names the SPEC.md rule or data
+# source that makes it change the expected behavior.
+#
+# The message writer never reads this file; it receives only the
+# user-visible facts of one scenario.
+
+dimensions:
+  role:
+    reason: "AUTH-1 access matrix (SPEC.md section 3): each role sees and changes different records."
+    values:
+      shopper: "Own orders only."
+      merchant: "Own store's orders only."
+      support: "Any order; refunds above the threshold still queue for a human."
+
+  intent:
+    reason: "SCOPE-1 and SCOPE-2 define what the agent supports or refuses; each intent takes a different tool path."
+    values:
+      order_status: "Where is an order, what state is it in (get_order, list_my_orders, find_order)."
+      refund: "Refund requests and 'can I still return it' or deadline questions (eligibility, issue_refund)."
+      cancellation: "Cancel an order; only placed orders can be cancelled (TOOL-8, cw-cancellations)."
+      policy_question: "Platform or store policy answered from the help center (RESP-1 citation)."
+      product_question: "Product search or product details (search_products, get_product)."
+      dispute: "Charge disputes and contested orders; always escalated (ESC-3, cw-disputes)."
+      account_change: "Any account change; always escalated (ESC-2)."
+      out_of_scope: "Legal advice, payment credentials, non-Cartwheel questions; refused (SCOPE-2)."
+
+  access:
+    reason: "AUTH-1: records outside the caller's scope must be refused without revealing details (RESP-4)."
+    values:
+      own_record: "Shopper's own order, merchant's own store's order or product, or any order for support."
+      others_record: "Another user's or another store's order. Not used with support, which may view any order."
+      no_record: "The request involves no specific order or product record."
+
+  record_state:
+    reason: "The record's state fixes the expected outcome (seed/eligibility.py, SPEC.md TOOL-7 and TOOL-8)."
+    values:
+      in_window: "Delivered, inside the effective return window (inclusive), at or below $100."
+      past_window: "Delivered, outside the effective return window."
+      placed: "Not shipped yet; can be cancelled."
+      shipped: "Shipped, not delivered; cannot be cancelled."
+      cancelled: "Already cancelled."
+      refunded: "Already refunded."
+      above_threshold: "Eligible, but the amount is above refund_auto_approve_threshold_usd ($100); the refund queues for a human (ESC-1)."
+      valid_product: "An ordinary catalog product."
+      dq_order_missing_delivery_date: "Data quality case dq-order-missing-delivery-date (order 8002)."
+      dq_order_reversed_dates: "Data quality case dq-order-reversed-dates (order 8001)."
+      dq_order_store_mismatch: "Data quality case dq-order-store-mismatch (order 8003)."
+      dq_product_duplicate_title: "Data quality case dq-product-duplicate-title (products 1 and 2)."
+      dq_product_invalid_price: "Data quality case dq-product-invalid-price (product 4)."
+      dq_product_missing_title: "Data quality case dq-product-missing-title (product 3)."
+      policy_page: "A platform or store policy document."
+      none: "No record."
+
+  applicable_policy:
+    reason: "facts.yaml platform rules and the store overrides in seed/generate.py CORE_STORES change the answer; RESP-1 requires the policy id."
+    values:
+      platform: "Cartwheel platform policy (cw-* documents)."
+      store_window_override: "A store return window: Saltbox Pantry 7, Juniper Home Goods 14, Meridian Cycles 21, Northwind Books 45 days."
+      store_restocking_fee: "A store that opted into restocking fees: Cascade Audio, Second Stitch Apparel."
+      none: "No policy applies."
+
+  tools_needed:
+    reason: "Coarse count of tool calls a correct answer needs. Expected outcomes check results, not exact tool sequences."
+    values:
+      none: "No tool call, for example an out-of-scope refusal."
+      one_lookup: "One read tool."
+      several_calls: "A lookup plus a policy read or a write tool."
+
+  difficulty:
+    reason: "RESP-3 requires stating missing or inconsistent information; ESC-4 requires escalation when unsure."
+    values:
+      well_specified: "The request identifies one record and one goal."
+      ambiguous: "The description matches more than one record; the agent must ask or list them."
+      missing_information: "The request lacks what the agent needs; a followup may supply it."
+      boundary: "The record sits on or next to a rule edge: return-window day, store override, or the $100 threshold."
+      correction_across_turns: "The user corrects an earlier detail in a followup."
+      inconsistent_record: "The record is one of the six data quality cases."
+
+  user_style:
+    reason: "RESP-5 requires direct, respectful replies regardless of style. Values must match scenarios/validate.py USER_STYLES."
+    values:
+      neutral_conversational: ""
+      terse_fragmentary: ""
+      typo_heavy: ""
+      confused_rambling: ""
+      frustrated_impatient: ""
+      repetitive_pressuring: ""
+      operational_shorthand: ""
+      requests_short_plain_answer: ""
+
+# Turn count is not a dimension: tuple.turn_count = 1 + len(followups).
+
+groups:
+  coverage: "Ordinary requests across every important dimension value."
+  challenge: "Intentionally difficult requests: boundary, inconsistent_record (five per data quality case in the final set), others_record, correction_across_turns, store override edges, missing_information."
+
+excluded:
+  prompt_injection: "Homework 8 covers deliberate attacks."
+  prompt_version: "Agent configuration, held fixed for a run; recorded on every trace by the server."

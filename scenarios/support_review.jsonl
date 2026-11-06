@@ -1,0 +1,15 @@
+{"scenario_id":"support-0049","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0222","decision":"accept","reason":"message contains 'delivered month ago', but still want to check if agent correctly use store override","change":null}
+{"scenario_id":"support-0244","decision":"accept","reason":"message contains 'delivered month ago', but still want to check if agent correctly use platform rules","change":null}
+{"scenario_id":"support-0238","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0245","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0212","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0156","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0116","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0025","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0030","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0051","decision":"revise","reason":"The message is not realistic \"delivered\" and \"never arrived\" sit in the same sentence not clear if it was delivered or not from customer words","change":"Customer claims order 8349 never arrived. Requesting dispute initiation for charge reversal and next steps to verify claim."}
+{"scenario_id":"support-0058","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0043","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0203","decision":"accept","reason":"match record and conversation stile","change":null}
+{"scenario_id":"support-0031","decision":"accept","reason":"match record and conversation stile","change":null}
