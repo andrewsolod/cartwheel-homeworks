@@ -1,1 +1,674 @@
-{"modes": []}
+{
+  "modes": [
+    {
+      "name": "guesses_order_without_lookup",
+      "status": "confirmed",
+      "definition": "The user refers to an order by product or description; the agent answers from list_my_orders (ids only) without find_order/get_order and picks or assumes an order, or says it is not there.",
+      "spec_source": "RESP-3",
+      "boundary": "Nearest: search_query_misbuilt. Positive only if the agent never retrieved the specific order (no find_order/get_order result for it) before naming, choosing or ruling out an order. If it searched and the query or filters were wrong, it is search_query_misbuilt.",
+      "evaluator_type": "code",
+      "positives": [
+        "02df0a7c957f0c6735367d2107dfbc24",
+        "255429fa74d3d6531fd4edfd1add95b5",
+        "49daa158051969ab954cc80389860292",
+        "50db8320ee16bbbf325cbd45f1743492",
+        "80b05934cd469490cab8e7111c49669a",
+        "9fc0072f4e4fced72be22d81baa9cea8",
+        "a3120c32a205e81258aeb40b96c7a75c",
+        "abc047f9ff9e16424cb29ec8a486a3af",
+        "b82965c9d5ced9801a4fb4a37dab823e",
+        "c40fd634d7fa5d6056821240d0f489d5",
+        "ed2c32a32790037e59bfefc6469fd0aa",
+        "f785c18965af4354c81a973d5c77dfc8"
+      ],
+      "close_negatives": [
+        "12187ec888ec532ca9318d4930c097fa",
+        "1b6b4923ae9919abca088b2152fc804e",
+        "1e98900016e99e3ffb94a1a5cc458d1c"
+      ],
+      "created_from": [
+        "amwc7ymyjn5yp",
+        "amwc7yxjbl6vl",
+        "amwc8pc4frrea",
+        "amwc96pqrxg9t",
+        "amwc9ducgnbzm",
+        "amwcfivbel060",
+        "amwcfpc0p05nt",
+        "amwcfzanhl2uv",
+        "amwcg4oj7p13s",
+        "amwepeoopvmm8",
+        "amwepuaeipyni",
+        "amwewad5tip9p",
+        "amwex2didf4ck"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "proposed in axial pass 1 from batch 1 notes"
+        },
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: added batch 2 cases 0096, 0124, 0246, 0037"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0236, 0059 (retrieved by the refund search)"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-13T12:05:19.454834+00:00",
+          "change": "batch 4: +0114, 0014 (0014 issued a $183.75 refund on the wrong order)"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "code check: the reply names or rules out an order that no find_order/get_order result returned in the conversation (list_my_orders has no titles)",
+      "requirement_source": "RESP-3",
+      "example_trace_ids": [
+        "02df0a7c957f0c6735367d2107dfbc24",
+        "255429fa74d3d6531fd4edfd1add95b5",
+        "49daa158051969ab954cc80389860292",
+        "50db8320ee16bbbf325cbd45f1743492",
+        "80b05934cd469490cab8e7111c49669a",
+        "9fc0072f4e4fced72be22d81baa9cea8",
+        "a3120c32a205e81258aeb40b96c7a75c",
+        "abc047f9ff9e16424cb29ec8a486a3af",
+        "b82965c9d5ced9801a4fb4a37dab823e",
+        "c40fd634d7fa5d6056821240d0f489d5",
+        "ed2c32a32790037e59bfefc6469fd0aa",
+        "f785c18965af4354c81a973d5c77dfc8"
+      ]
+    },
+    {
+      "name": "policy_stated_without_lookup",
+      "status": "confirmed",
+      "definition": "The reply states a policy rule, window or timeframe without a get_policy/search_help_center call in the conversation, so the claim is invented and uncited.",
+      "spec_source": "RESP-1, RESP-3",
+      "boundary": "Nearest: wrong_policy_applied. Positive if no search_help_center/get_policy result in the conversation supports the policy claim, or the claim goes beyond what the lookup returned (0129). If a lookup supports the claim but it is the wrong policy or misapplied, it is wrong_policy_applied.",
+      "evaluator_type": "judge",
+      "positives": [
+        "0914e52f8820a92a89fd1377c0ca90c1",
+        "0c65a255365b61ff5651e1f76ce3f00c",
+        "0d32db8975da72c6a78ce2237c288ac3",
+        "1912c411873ea122a57f7be6737a97f0",
+        "1bf14e15346c58145e2a9dab0864152e",
+        "20c099ac13cda93aa986f7dd97e6955c",
+        "69b0032beaa13cd91135c43435b4acc9",
+        "b512938d2c01b7742bee50aa434a1895"
+      ],
+      "close_negatives": [
+        "08c645bf2483644675b3d60e8632dec1",
+        "601cb30fb97fdb0ef8b4dac59fb989dc",
+        "8e66559a96d42dcf26c9c1e760768226",
+        "b6f9a45cadedb5d9addf7d78a3db2393"
+      ],
+      "created_from": [
+        "amwc2vfjrro8x",
+        "amwc8rav4jphx",
+        "amwca0a4p3mj3",
+        "amwca4pm5rs1a",
+        "amwcfw3fint9e",
+        "amwcg4e12sej6",
+        "amweqam7ss869",
+        "amwewke03izpe"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "proposed in axial pass 1 from batch 1 notes"
+        },
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: added 0231 (vague, no lookup), 0130 (invented payout schedule)"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0129 (lookup done, claim goes beyond what it returned)"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-13T12:05:19.454834+00:00",
+          "change": "batch 4: +0177; close negative 0110 (timeline came from the issue_refund result)"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "LLM judge (find policy claims in the reply and check them against retrieved text)",
+      "requirement_source": "RESP-1, RESP-3",
+      "example_trace_ids": [
+        "0914e52f8820a92a89fd1377c0ca90c1",
+        "0c65a255365b61ff5651e1f76ce3f00c",
+        "0d32db8975da72c6a78ce2237c288ac3",
+        "1912c411873ea122a57f7be6737a97f0",
+        "1bf14e15346c58145e2a9dab0864152e",
+        "20c099ac13cda93aa986f7dd97e6955c",
+        "69b0032beaa13cd91135c43435b4acc9",
+        "b512938d2c01b7742bee50aa434a1895"
+      ]
+    },
+    {
+      "name": "wrong_policy_applied",
+      "status": "confirmed",
+      "definition": "The answer rests on the wrong policy (e.g. a dispute answered with the return policy) or misapplies the right one (e.g. miscounts a window it just quoted).",
+      "spec_source": "RESP-1; applicable policy documents (cw-disputes, cw-returns, store policies)",
+      "boundary": "Nearest: policy_stated_without_lookup. Positive if the answer rests on a policy other than the applicable one, or misapplies the applicable one. Citing an alternative policy that the requirement allows is not a failure (rejected search hit 0035).",
+      "evaluator_type": "code",
+      "positives": [
+        "0c65a255365b61ff5651e1f76ce3f00c",
+        "1b6b4923ae9919abca088b2152fc804e",
+        "1e98900016e99e3ffb94a1a5cc458d1c",
+        "f1f33c068d2df8269ef337b25a9922b3",
+        "ff654bb5051b3b3d9b2b93922703198e"
+      ],
+      "close_negatives": [
+        "601cb30fb97fdb0ef8b4dac59fb989dc",
+        "813a96bbc57c18bd9af0919b4b46cb50",
+        "8e66559a96d42dcf26c9c1e760768226"
+      ],
+      "created_from": [
+        "amwc8t132sy05",
+        "amweq9e05wi69",
+        "amwercnw0vakt",
+        "amwereivi013c"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "proposed in axial pass 1 from batch 1 notes"
+        },
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "student merged 'misapplied retrieved policy' (0079) and 'dispute treated as refund' (0051)"
+        },
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: 0051 moved to required_escalation_missing (one fix: always escalate ESC-2/ESC-3); definition narrowed to misapplied retrieved policy"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "REVISION: broadened after student accepted 0072 (dispute answered with cw-returns). Was: 'retrieved the relevant policy but applied it wrongly'"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0072; close negative 0035"
+        },
+        {
+          "ts": "2026-11-13T09:15:58.090358+00:00",
+          "change": "re-search after revision (search.py wrong_policy over 85 reviewed): 5 hits, student accepted all; added 0032, 0066, 0081 as positives (0072 already). 0035 accepted too but it is a recorded close negative and the student's no-failure: pending clarification"
+        },
+        {
+          "ts": "2026-11-13T09:24:42.437749+00:00",
+          "change": "student: 0035 search hit rejected (decision changed from accepted); boundary: citing an alternative policy the expected outcome allows is not this mode. 0035 stays a close negative"
+        },
+        {
+          "ts": "2026-11-13T09:25:59.016030+00:00",
+          "change": "grouped the student's evidence notes on 0066 and 0081 (cw-returns sentence) from the accepted search hits"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "RENAMED from wrong_policy_outcome after the AgentDebug comparison: after the broadening the outcome can be right while the policy is wrong (0072)"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "search_hits": [
+        "search-wrong_policy-support-0032",
+        "search-wrong_policy-support-0035",
+        "search-wrong_policy-support-0066",
+        "search-wrong_policy-support-0072",
+        "search-wrong_policy-support-0081"
+      ],
+      "evaluator_note": "code check for scenario traces (cited/fetched policy ids vs the reference policy, search.py wrong_policy) + LLM judge for misapplication (0079)",
+      "requirement_source": "RESP-1; applicable policy documents (cw-disputes, cw-returns, store policies)",
+      "example_trace_ids": [
+        "0c65a255365b61ff5651e1f76ce3f00c",
+        "1b6b4923ae9919abca088b2152fc804e",
+        "1e98900016e99e3ffb94a1a5cc458d1c",
+        "f1f33c068d2df8269ef337b25a9922b3",
+        "ff654bb5051b3b3d9b2b93922703198e"
+      ]
+    },
+    {
+      "name": "search_query_misbuilt",
+      "status": "confirmed",
+      "definition": "search_products is called with a query that cannot match existing products (plural form, store name inside the query instead of the store filter), it returns 0, and the reply reports nothing found.",
+      "spec_source": "TOOL-3",
+      "boundary": "Nearest: guesses_order_without_lookup. Positive if search_products was called but its query/filters could not match existing products (plural form, store name in the query), and the reply reports none.",
+      "evaluator_type": "code",
+      "positives": [
+        "b10bd8ac04e0bc460363f4313b902063",
+        "bd05a1cbdd31c6c93d21baaf8e7698fe",
+        "ed423cb21e79b14275aea77f343dd26c"
+      ],
+      "close_negatives": [
+        "6eb6d370bff5588d30984bf905317425",
+        "714f78190ac1164c7f9c04074165a3d2",
+        "ccee3f0b1485eada5c2c30729980aa59"
+      ],
+      "created_from": [
+        "amwc8l6q73ohj",
+        "amwc9nubnt5mo",
+        "amweqedj80stc"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "proposed in axial pass 1 from batch 1 notes"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0068; close negatives 0162, 0087, 0028"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "code check: search_products returned 0 while the reference query returns rows (or: plural token / store name in query with store null)",
+      "requirement_source": "TOOL-3",
+      "example_trace_ids": [
+        "b10bd8ac04e0bc460363f4313b902063",
+        "bd05a1cbdd31c6c93d21baaf8e7698fe",
+        "ed423cb21e79b14275aea77f343dd26c"
+      ]
+    },
+    {
+      "name": "permission_denial_mishandled",
+      "status": "confirmed",
+      "definition": "After a permission_denied result, the reply does more than a short, plain refusal in the user's terms: it explains the denial in system terms (roles, permission restrictions), speculates about who owns the order, or offers to act on the order anyway.",
+      "spec_source": "RESP-4, AUTH-1",
+      "boundary": "Nearest: required_escalation_missing. Judges only the wording and offers after permission_denied; offering escalation is fine and whether escalation was required is the other mode.",
+      "evaluator_type": "judge",
+      "positives": [
+        "4583e80e58c0f3431ec0035bf518c88e",
+        "53c454fa9625244a5f5510d3addbde6a",
+        "9da00898cb886c94ff8d3eeb3e0c9c69",
+        "aa65562498394e36e6e75a29d217870d",
+        "b9f0bc35bf97b94f0ef9d36c7205ba20"
+      ],
+      "close_negatives": [
+        "3cf7d77c3e13fbe0b22ab5c3fd173aef",
+        "acf6a2cc80a416859ed7b6944f90480c",
+        "bd59e2ad36e1e2c604c4f50ab129836b"
+      ],
+      "created_from": [
+        "amwc7um0piyt4",
+        "amwc88gvkktcu",
+        "amweq5np86kcq",
+        "amweq5qn4uv31",
+        "amweq662wh583"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "proposed in axial pass 1 from batch 1 notes"
+        },
+        {
+          "ts": "2026-11-11T17:49:01.638383+00:00",
+          "change": "0017: student chose the reply ('too technical') as first failure, not the escalation call (ESC-3/ESC-4 allow escalating)"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "REVISION: renamed from permission_denial_overexplained; broadened after student accepted 0208 (offers to cancel anyway). Was: 'explains the denial in technical terms or speculates'. Boundary from student's 0224 rejection: explaining in the user's terms ('orders not linked to your account') passes"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0013, 0168, 0208; close negatives 0070, 0224, 0083"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "LLM judge",
+      "requirement_source": "RESP-4, AUTH-1",
+      "example_trace_ids": [
+        "4583e80e58c0f3431ec0035bf518c88e",
+        "53c454fa9625244a5f5510d3addbde6a",
+        "9da00898cb886c94ff8d3eeb3e0c9c69",
+        "aa65562498394e36e6e75a29d217870d",
+        "b9f0bc35bf97b94f0ef9d36c7205ba20"
+      ]
+    },
+    {
+      "name": "eligible_action_not_taken",
+      "status": "confirmed",
+      "definition": "The user asked for a refund or cancellation, the tool result shows the order is eligible (refund_eligible true, or status placed for a cancellation), and the agent does not call issue_refund / cancel_order: it stops after announcing the action, or asks for a reason or amount the tool does not need.",
+      "spec_source": "RESP-6 (SPEC revision 2026-11-13, extended to cancel_order after batch 4)",
+      "boundary": "Nearest: required_escalation_missing. The refund is within the agent's authority (the tool decides auto-approve vs queue, ESC-1). Not positive when the user only asked for advice on next steps (0103, 0250).",
+      "evaluator_type": "code",
+      "positives": [
+        "06d4f4e9a8533ec556f3ff26644dbfc0",
+        "3b5ee59b98f6e2c9f4c0b6b549e11948",
+        "57add20d8bedd35f3d51ec4e4c589949",
+        "58a8a1c0d103dcb5c74570840d055e38",
+        "c1fe6339882e0a43a02341cbc6d35587",
+        "fc0b1fcb9d30ef6e71c16f269613c488"
+      ],
+      "close_negatives": [
+        "409655cc085818b7d6e632391678141b",
+        "78ade3432f41928346a7dd3e57b3e50d",
+        "a79a8a4255c3013733d7f6592ab0e0fd",
+        "b11742c6a15b901e511a9084620666bb"
+      ],
+      "created_from": [
+        "amwcg1hxk78nn",
+        "amwcg21vtqwld",
+        "amwcg5aihtvlh",
+        "amwcg6tfl5zdn",
+        "amwepnbsm4ln2",
+        "amwewh4nsps18",
+        "amwewzpg8cxov"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: new from batch 2 (0103 borderline: user asked how to proceed)"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0056; student changed 0103 to no failure; close negatives 0103, 0250. Boundary (rejected search suggestion 0250): the user asked for advice on next steps, not for the refund to be processed"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-13T12:05:19.454834+00:00",
+          "change": "REVISION 2: renamed from refund_not_issued_after_eligible and broadened to cancellations after batch 4 (0026): one fix (no unneeded reason before a write tool) corrects both"
+        },
+        {
+          "ts": "2026-11-13T12:05:19.454834+00:00",
+          "change": "batch 4: +0065 (refund), 0026 (cancellation)"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "spec_revision": {
+        "id": "RESP-6",
+        "date": "2026-11-13",
+        "motivating_annotations": [
+          "amwcg1hxk78nn"
+        ],
+        "text": "When the user asks for a refund or a cancellation and get_order reports the order eligible (refund-eligible, or placed for a cancellation), call issue_refund for the order total or cancel_order. Do not ask for a reason or amount the user has not given; use a short generic reason. The tool decides between auto-approval and queueing (ESC-1).",
+        "history": [
+          {
+            "ts": "2026-11-13T12:05:19.454834+00:00",
+            "change": "extended to cancel_order (motivating annotation: 0026)"
+          }
+        ]
+      },
+      "evaluator_note": "code check: eligible get_order + user asked to process + no issue_refund/cancel_order call",
+      "requirement_source": "RESP-6 (SPEC revision 2026-11-13, extended to cancel_order after batch 4)",
+      "example_trace_ids": [
+        "06d4f4e9a8533ec556f3ff26644dbfc0",
+        "3b5ee59b98f6e2c9f4c0b6b549e11948",
+        "57add20d8bedd35f3d51ec4e4c589949",
+        "58a8a1c0d103dcb5c74570840d055e38",
+        "c1fe6339882e0a43a02341cbc6d35587",
+        "fc0b1fcb9d30ef6e71c16f269613c488"
+      ]
+    },
+    {
+      "name": "inconsistent_record_not_flagged",
+      "status": "confirmed",
+      "definition": "The tool result contains a record that cannot be right or is ambiguous (missing delivery date, negative price, duplicate titles, product from another store) and the reply presents it as normal or claims a unique match instead of saying so.",
+      "spec_source": "RESP-3",
+      "boundary": "Nearest: guesses_order_without_lookup. Positive only if the agent retrieved the record and the record itself is contradictory or ambiguous; computing a deadline from a missing date counts (0067, 0107). Close negatives: the reviewed data permit only one (0221).",
+      "evaluator_type": "judge",
+      "positives": [
+        "01c807d757d9e9f254d0f6e5962117b4",
+        "12187ec888ec532ca9318d4930c097fa",
+        "39e777bebc8c42b7e2afd1de1ba687e9",
+        "4b274a46f7fecbaf15dd02a5b1fc1c24",
+        "50acaf1e8304437e6b09a52aa7344377",
+        "6f525ec4fb9ad8de89fc5d1eb9fd61f1",
+        "a51dcbff6509a7c7453e1ecc1602217e",
+        "f3a6c7fc9e46631c579d593012dc342e"
+      ],
+      "close_negatives": [
+        "91366faadd2cc350a2e61e7e15b3cae9"
+      ],
+      "created_from": [
+        "amwcfhgrcdovk",
+        "amwcg4h88u22y",
+        "amwcg4ltyev9z",
+        "amwcg61vekchm",
+        "amwepux5u81tb",
+        "amwepxyu4gaq6",
+        "amweqe80l3wul",
+        "amwesmu892efa"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: new from batch 2; student added 0077 (negative price)"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0053, 0156, 0067 (0067 retrieved by the policy search); close negative 0221 (lists all duplicates, asks which)"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "late-mode recheck of batch 1: student accepted 0107 and wrote the evidence note"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "LLM judge",
+      "requirement_source": "RESP-3",
+      "example_trace_ids": [
+        "01c807d757d9e9f254d0f6e5962117b4",
+        "12187ec888ec532ca9318d4930c097fa",
+        "39e777bebc8c42b7e2afd1de1ba687e9",
+        "4b274a46f7fecbaf15dd02a5b1fc1c24",
+        "50acaf1e8304437e6b09a52aa7344377",
+        "6f525ec4fb9ad8de89fc5d1eb9fd61f1",
+        "a51dcbff6509a7c7453e1ecc1602217e",
+        "f3a6c7fc9e46631c579d593012dc342e"
+      ]
+    },
+    {
+      "name": "required_escalation_missing",
+      "status": "confirmed",
+      "definition": "The case must go to a human (account change ESC-2, dispute ESC-3) and the agent resolves or redirects it itself, or only offers escalation, instead of calling escalate_to_human.",
+      "spec_source": "ESC-2, ESC-3",
+      "boundary": "Nearest: permission_denial_mishandled. Positive if the case requires a human (account change ESC-2, dispute ESC-3) and there is no escalate_to_human call; only offering escalation counts as missing. Close negatives: none in the reviewed data (only correct required escalation in all 250 is unreviewed 0194); nearest are 0189 (escalated, not required) and 0083.",
+      "evaluator_type": "code",
+      "positives": [
+        "1068d048be3c460c9caba17c57170927",
+        "1b6b4923ae9919abca088b2152fc804e",
+        "7f777727350bb7ee8a943f88897b60ea",
+        "beae5866374023a5291cf37d5b37033e",
+        "e4024965e5671d4eae94483c06305ee9",
+        "e8991f2e935fa6913533c2a027eb6c53",
+        "f1f33c068d2df8269ef337b25a9922b3",
+        "fa5361b8334eae4bf39e15fc7c1897da"
+      ],
+      "close_negatives": [],
+      "created_from": [
+        "amwca8d5qzh9e",
+        "amwcg4a1bh19u",
+        "amwcg6otzg5td",
+        "amweq4e250cue",
+        "amweq4tpc1kva",
+        "amweq526w2omd",
+        "amweq57btdfeo",
+        "amweskg1h0xk1"
+      ],
+      "history": [
+        {
+          "ts": "2026-11-11T18:31:26.821421+00:00",
+          "change": "axial pass 2: new from batch 2; student moved 0051 here from wrong_policy_outcome"
+        },
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "batch 3: +0243, 0066, 0081, 0039"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "late-mode recheck of batch 1: student accepted 0086 and wrote the evidence note"
+        },
+        {
+          "ts": "2026-11-13T10:09:11.007457+00:00",
+          "change": "Step 11: boundary, close negatives, evaluator type and requirement source approved by the student; status confirmed"
+        },
+        {
+          "ts": "2026-11-14T06:24:27.574306+00:00",
+          "change": "schema: added the course helper fields (requirement_source, example_trace_ids, evaluator_type code|judge); approved evaluator text kept in evaluator_note"
+        }
+      ],
+      "evaluator_note": "code check (intent known + no escalate_to_human call); LLM judge to classify the case as ESC-2/ESC-3 outside scenario metadata",
+      "requirement_source": "ESC-2, ESC-3",
+      "example_trace_ids": [
+        "1068d048be3c460c9caba17c57170927",
+        "1b6b4923ae9919abca088b2152fc804e",
+        "7f777727350bb7ee8a943f88897b60ea",
+        "beae5866374023a5291cf37d5b37033e",
+        "e4024965e5671d4eae94483c06305ee9",
+        "e8991f2e935fa6913533c2a027eb6c53",
+        "f1f33c068d2df8269ef337b25a9922b3",
+        "fa5361b8334eae4bf39e15fc7c1897da"
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "name": "reply_style",
+      "reason": "Only source is RESP-5, too vague for a binary mode; treated as preference, not failure.",
+      "conversations": [
+        "032877fbfc89061f9d53457ddb110734",
+        "1b9eeef4dc77ee5337295742e141b91a",
+        "91366faadd2cc350a2e61e7e15b3cae9",
+        "a51dcbff6509a7c7453e1ecc1602217e"
+      ],
+      "created_from": [
+        "amwc7j0krag44",
+        "amwc900u6dj7r",
+        "amwc9vg79f35b",
+        "amwc9x5b90m8m",
+        "amweq3w54rp72"
+      ],
+      "ts": "2026-11-11T17:49:01.638383+00:00",
+      "history": [
+        {
+          "ts": "2026-11-13T09:00:28.619361+00:00",
+          "change": "added 0221 (store id instead of store name), same RESP-5-only source"
+        }
+      ]
+    }
+  ],
+  "scenario_defects": [
+    {
+      "name": "scenario_defect",
+      "reason": "Incoherent writer brief or unrealistic generated user message; a test-set defect, not an agent failure. Excluded from mode labels; reported in review_summary.md.",
+      "conversations": [
+        "401df3b521b5625b221321167a94e51d",
+        "a7d54769d0c46ceda97bb18846adc50e",
+        "c80e1f22ef377bf0f6e65e4e8f9196be",
+        "d61534e7353953e15c485b43a301189a",
+        "db24dc340cf7334ea914fb972053730a",
+        "dce1bf94aa8d857a9624c24338f7de76"
+      ],
+      "created_from": [
+        "amwc8o12nsql6",
+        "amwc92ejfhd0f",
+        "amwc9er1mt62y",
+        "amwcfnff4gv8l",
+        "amwcg4ufg0cwu",
+        "amweww0dnxzg7"
+      ],
+      "ts": "2026-11-11T17:49:01.638383+00:00"
+    }
+  ],
+  "ungrouped": [
+    {
+      "scenario_id": "support-0095",
+      "trace_id": "991dd73611dc8fcf48c603a8fd8968d4",
+      "created_from": [
+        "amweq1t7pfi98"
+      ],
+      "reason": "single observation: refusal with an invented 'privacy policies' reason; mention in review_summary"
+    }
+  ],
+  "agentdebug": {
+    "source": "Zhu et al. 2025, Where LLM Agents Fail and How They Can Learn From Failures, arXiv:2509.25370 (AgentErrorTaxonomy)",
+    "mapping": {
+      "refund_not_issued_after_eligible": "Action: planning-action disconnect",
+      "search_query_misbuilt": "Action: parameter error",
+      "required_escalation_missing": "Planning: constraint ignorance",
+      "policy_stated_without_lookup": "Memory: hallucination / retrieval failure",
+      "inconsistent_record_not_flagged": "Reflection: outcome misinterpretation",
+      "permission_denial_mishandled": "Reflection: outcome misinterpretation",
+      "wrong_policy_applied": "Memory: retrieval failure (wrong document)",
+      "guesses_order_without_lookup": "Memory: retrieval failure / hallucination"
+    },
+    "unclear_name": "wrong_policy_outcome renamed wrong_policy_applied (0072: right outcome, wrong policy)",
+    "considered_and_rejected": "Reflection: causal misattribution (false reason for a limitation): 0095 'privacy policies', 0080 blames the bank, 0168 guesses ownership. Only 0095 is not covered by another mode; one trace does not support a mode.",
+    "not_observed": "System errors (step limit, tool execution error, LLM limit, environment error)",
+    "decided_at": "2026-11-13T10:09:11.007457+00:00"
+  },
+  "tool_defects": [
+    {
+      "name": "search_ranking_hides_title_matches",
+      "conversations": [
+        "3c7f54b2871f04082c544770e7fa21b7"
+      ],
+      "created_from": [
+        "amwewoziibuic"
+      ],
+      "reason": "search_products matches description text too ('atlas' matches Atlas Stationery items) and limit 5 by price hid the two real atlases ($69.25, $86.50). The agent's query was reasonable and it said none of the results were atlases. Fix belongs in the tool (rank title matches first); not an agent mode.",
+      "ts": "2026-11-13T12:05:19.454834+00:00"
+    }
+  ],
+  "unseen_failures": [
+    {
+      "name": "out_of_scope_answered",
+      "conversations": [
+        "66cfd9e8b8759ce46e072647d8eb22b0"
+      ],
+      "created_from": [
+        "amwewxcju5km9"
+      ],
+      "reason": "Answers an out-of-scope request (cover-letter tips) instead of declining (SCOPE-2). Seen once in batch 4; close negatives available: 0172, 0196, 0205. Not a mode (needs >= 3 positives); HW5 candidate.",
+      "close_negatives": [
+        "2c406205e0372b469c3990f193e95e42",
+        "2dcbb5f7ec03085219ff54c5f9da50c8",
+        "8ddc92754abacd37feb8444481a8a88c"
+      ],
+      "ts": "2026-11-13T12:05:19.454834+00:00"
+    }
+  ]
+}

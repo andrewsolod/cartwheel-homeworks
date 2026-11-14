@@ -6,6 +6,9 @@
 
 # Generated world data. Recreate with: uv run python -m seed.generate
 data/cartwheel.db
+# Fresh seed copy for the HW4 review app's record panel. Recreate with:
+# uv run python -m seed.generate --db data/review_seed.db --policies <tmp dir>
+data/review_seed.db
 
 # Local conversation state and scenario/replay run outputs.
 .sessions.db

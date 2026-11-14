@@ -156,6 +156,8 @@ def main():
             scenario = {k: v for k, v in plan.items() if k not in AUTHOR_ONLY}
             scenario["opening_message"] = r["opening_message"].strip()
             scenario["followups"] = [x.strip() for x in r.get("followups") or []]
+            # Kept for review: the brief is what the writer saw (see HW4).
+            scenario["writer_brief"] = plan["writer_brief"]
             scenario["expected"] = plan["expected"]
             f.write(json.dumps(scenario) + "\n")
     with open(a.audit, "w") as f:

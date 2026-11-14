@@ -1,0 +1,872 @@
+{
+  "batches": [
+    {
+      "name": "batch1",
+      "label": "Batch 1: uniform + clusters",
+      "method": "15 uniform random + 15 k-means representatives (k=8, nearest to centroid)",
+      "target": 30,
+      "seed": 20261111,
+      "features": [
+        "turns",
+        "tool_calls",
+        "distinct_tools",
+        "has_retrieval",
+        "words"
+      ],
+      "clusters": [
+        {
+          "cluster": 0,
+          "size": 38,
+          "mean": {
+            "turns": 1.3,
+            "tool_calls": 1.5,
+            "distinct_tools": 1.5,
+            "has_retrieval": 0.0,
+            "words": 572.2
+          }
+        },
+        {
+          "cluster": 1,
+          "size": 8,
+          "mean": {
+            "turns": 1.0,
+            "tool_calls": 2.0,
+            "distinct_tools": 2.0,
+            "has_retrieval": 0.0,
+            "words": 188.0
+          }
+        },
+        {
+          "cluster": 2,
+          "size": 18,
+          "mean": {
+            "turns": 1.4,
+            "tool_calls": 1.2,
+            "distinct_tools": 1.1,
+            "has_retrieval": 1.0,
+            "words": 311.8
+          }
+        },
+        {
+          "cluster": 3,
+          "size": 6,
+          "mean": {
+            "turns": 2.0,
+            "tool_calls": 0.0,
+            "distinct_tools": 0.0,
+            "has_retrieval": 0.0,
+            "words": 118.3
+          }
+        },
+        {
+          "cluster": 4,
+          "size": 40,
+          "mean": {
+            "turns": 2.0,
+            "tool_calls": 1.2,
+            "distinct_tools": 1.1,
+            "has_retrieval": 0.0,
+            "words": 218.1
+          }
+        },
+        {
+          "cluster": 5,
+          "size": 98,
+          "mean": {
+            "turns": 1.0,
+            "tool_calls": 1.0,
+            "distinct_tools": 1.0,
+            "has_retrieval": 0.0,
+            "words": 154.6
+          }
+        },
+        {
+          "cluster": 6,
+          "size": 28,
+          "mean": {
+            "turns": 1.0,
+            "tool_calls": 0.0,
+            "distinct_tools": 0.0,
+            "has_retrieval": 0.0,
+            "words": 86.5
+          }
+        },
+        {
+          "cluster": 7,
+          "size": 14,
+          "mean": {
+            "turns": 1.5,
+            "tool_calls": 2.9,
+            "distinct_tools": 2.4,
+            "has_retrieval": 0.7,
+            "words": 556.9
+          }
+        }
+      ],
+      "selected_at": "2026-11-11T14:08:28.989613+00:00",
+      "picks": [
+        {
+          "trace_id": "032877fbfc89061f9d53457ddb110734",
+          "scenario_id": "support-0249",
+          "method": "cluster",
+          "cluster": 5,
+          "distance": 0.002,
+          "reason": "cluster 5 representative #1 (distance 0.00 to centroid)"
+        },
+        {
+          "trace_id": "4583e80e58c0f3431ec0035bf518c88e",
+          "scenario_id": "support-0184",
+          "method": "cluster",
+          "cluster": 4,
+          "distance": 0.398,
+          "reason": "cluster 4 representative #1 (distance 0.40 to centroid)"
+        },
+        {
+          "trace_id": "abc047f9ff9e16424cb29ec8a486a3af",
+          "scenario_id": "support-0002",
+          "method": "cluster",
+          "cluster": 0,
+          "distance": 1.177,
+          "reason": "cluster 0 representative #1 (distance 1.18 to centroid)"
+        },
+        {
+          "trace_id": "8ddc92754abacd37feb8444481a8a88c",
+          "scenario_id": "support-0205",
+          "method": "cluster",
+          "cluster": 6,
+          "distance": 0.008,
+          "reason": "cluster 6 representative #1 (distance 0.01 to centroid)"
+        },
+        {
+          "trace_id": "9a5d21b118659305fbf50da160af505e",
+          "scenario_id": "support-0100",
+          "method": "cluster",
+          "cluster": 2,
+          "distance": 0.864,
+          "reason": "cluster 2 representative #1 (distance 0.86 to centroid)"
+        },
+        {
+          "trace_id": "b6f9a45cadedb5d9addf7d78a3db2393",
+          "scenario_id": "support-0189",
+          "method": "cluster",
+          "cluster": 7,
+          "distance": 1.61,
+          "reason": "cluster 7 representative #1 (distance 1.61 to centroid)"
+        },
+        {
+          "trace_id": "b9f0bc35bf97b94f0ef9d36c7205ba20",
+          "scenario_id": "support-0017",
+          "method": "cluster",
+          "cluster": 1,
+          "distance": 0.005,
+          "reason": "cluster 1 representative #1 (distance 0.01 to centroid)"
+        },
+        {
+          "trace_id": "2dcbb5f7ec03085219ff54c5f9da50c8",
+          "scenario_id": "support-0196",
+          "method": "cluster",
+          "cluster": 3,
+          "distance": 0.007,
+          "reason": "cluster 3 representative #1 (distance 0.01 to centroid)"
+        },
+        {
+          "trace_id": "ed423cb21e79b14275aea77f343dd26c",
+          "scenario_id": "support-0188",
+          "method": "cluster",
+          "cluster": 5,
+          "distance": 0.003,
+          "reason": "cluster 5 representative #2 (distance 0.00 to centroid)"
+        },
+        {
+          "trace_id": "db24dc340cf7334ea914fb972053730a",
+          "scenario_id": "support-0015",
+          "method": "cluster",
+          "cluster": 4,
+          "distance": 0.399,
+          "reason": "cluster 4 representative #2 (distance 0.40 to centroid)"
+        },
+        {
+          "trace_id": "9fc0072f4e4fced72be22d81baa9cea8",
+          "scenario_id": "support-0150",
+          "method": "cluster",
+          "cluster": 0,
+          "distance": 1.177,
+          "reason": "cluster 0 representative #2 (distance 1.18 to centroid)"
+        },
+        {
+          "trace_id": "1bf14e15346c58145e2a9dab0864152e",
+          "scenario_id": "support-0043",
+          "method": "cluster",
+          "cluster": 6,
+          "distance": 0.019,
+          "reason": "cluster 6 representative #2 (distance 0.02 to centroid)"
+        },
+        {
+          "trace_id": "ff654bb5051b3b3d9b2b93922703198e",
+          "scenario_id": "support-0079",
+          "method": "cluster",
+          "cluster": 2,
+          "distance": 0.868,
+          "reason": "cluster 2 representative #2 (distance 0.87 to centroid)"
+        },
+        {
+          "trace_id": "a51dcbff6509a7c7453e1ecc1602217e",
+          "scenario_id": "support-0107",
+          "method": "cluster",
+          "cluster": 7,
+          "distance": 1.682,
+          "reason": "cluster 7 representative #2 (distance 1.68 to centroid)"
+        },
+        {
+          "trace_id": "7589cb0b545df81f9488308d88593c22",
+          "scenario_id": "support-0099",
+          "method": "cluster",
+          "cluster": 1,
+          "distance": 0.038,
+          "reason": "cluster 1 representative #2 (distance 0.04 to centroid)"
+        },
+        {
+          "trace_id": "c80e1f22ef377bf0f6e65e4e8f9196be",
+          "scenario_id": "support-0122",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "02df0a7c957f0c6735367d2107dfbc24",
+          "scenario_id": "support-0241",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "ed2c32a32790037e59bfefc6469fd0aa",
+          "scenario_id": "support-0073",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "dce1bf94aa8d857a9624c24338f7de76",
+          "scenario_id": "support-0094",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "f58b6a7ec1c4a1e76a7c784d86109fba",
+          "scenario_id": "support-0045",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "bd05a1cbdd31c6c93d21baaf8e7698fe",
+          "scenario_id": "support-0126",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "beae5866374023a5291cf37d5b37033e",
+          "scenario_id": "support-0086",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "1b9eeef4dc77ee5337295742e141b91a",
+          "scenario_id": "support-0220",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "9a235bd571e64f378d84f7df86687c42",
+          "scenario_id": "support-0176",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "1912c411873ea122a57f7be6737a97f0",
+          "scenario_id": "support-0240",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "f0c46dfacdc25c0f5912e57579d0833c",
+          "scenario_id": "support-0159",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "0c65a255365b61ff5651e1f76ce3f00c",
+          "scenario_id": "support-0032",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "fa5361b8334eae4bf39e15fc7c1897da",
+          "scenario_id": "support-0051",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "751f220eb41cab12697f93537ed6554d",
+          "scenario_id": "support-0207",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "c557293d3464f33f207f81c4271f2bf2",
+          "scenario_id": "support-0022",
+          "method": "uniform",
+          "reason": "uniform random"
+        }
+      ],
+      "source": "traces/support_traces.json"
+    },
+    {
+      "name": "batch2",
+      "label": "Batch 2: by role",
+      "method": "10 uniform random per role (shopper, merchant, support), excluding earlier batches",
+      "dimension": "role",
+      "target": 30,
+      "seed": 20261111,
+      "selected_at": "2026-11-11T17:52:38.154495+00:00",
+      "picks": [
+        {
+          "trace_id": "e7e099482481e987ab346a4a63cc66e3",
+          "scenario_id": "support-0119",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "f3a6c7fc9e46631c579d593012dc342e",
+          "scenario_id": "support-0077",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "c40fd634d7fa5d6056821240d0f489d5",
+          "scenario_id": "support-0096",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "d61534e7353953e15c485b43a301189a",
+          "scenario_id": "support-0042",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "50db8320ee16bbbf325cbd45f1743492",
+          "scenario_id": "support-0124",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "899a58ee42f838758ba106b95822f9d6",
+          "scenario_id": "support-0089",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "69b0032beaa13cd91135c43435b4acc9",
+          "scenario_id": "support-0231",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "ebdf1616ef8fc4504b6677f0ad33b4d6",
+          "scenario_id": "support-0185",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "b82965c9d5ced9801a4fb4a37dab823e",
+          "scenario_id": "support-0246",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "a96acfbb4fbe2ae5d4dbd0a6a12c13cc",
+          "scenario_id": "support-0163",
+          "method": "by_role",
+          "role": "shopper",
+          "reason": "uniform random within role shopper"
+        },
+        {
+          "trace_id": "c1fe6339882e0a43a02341cbc6d35587",
+          "scenario_id": "support-0033",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "57add20d8bedd35f3d51ec4e4c589949",
+          "scenario_id": "support-0041",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "fd2fc7ac5da512527ea9ec05acd26844",
+          "scenario_id": "support-0206",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "b11742c6a15b901e511a9084620666bb",
+          "scenario_id": "support-0020",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "e8991f2e935fa6913533c2a027eb6c53",
+          "scenario_id": "support-0012",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "b512938d2c01b7742bee50aa434a1895",
+          "scenario_id": "support-0130",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "39e777bebc8c42b7e2afd1de1ba687e9",
+          "scenario_id": "support-0217",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "6f525ec4fb9ad8de89fc5d1eb9fd61f1",
+          "scenario_id": "support-0058",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "255429fa74d3d6531fd4edfd1add95b5",
+          "scenario_id": "support-0037",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "bd59e2ad36e1e2c604c4f50ab129836b",
+          "scenario_id": "support-0070",
+          "method": "by_role",
+          "role": "merchant",
+          "reason": "uniform random within role merchant"
+        },
+        {
+          "trace_id": "401df3b521b5625b221321167a94e51d",
+          "scenario_id": "support-0143",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "601cb30fb97fdb0ef8b4dac59fb989dc",
+          "scenario_id": "support-0057",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "4637a3a533530dec5de88813ff1dc34e",
+          "scenario_id": "support-0227",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "a90e0cf4e0bd6c99956b81899a5c338b",
+          "scenario_id": "support-0202",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "78ade3432f41928346a7dd3e57b3e50d",
+          "scenario_id": "support-0103",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "8e66559a96d42dcf26c9c1e760768226",
+          "scenario_id": "support-0195",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "50acaf1e8304437e6b09a52aa7344377",
+          "scenario_id": "support-0080",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "409655cc085818b7d6e632391678141b",
+          "scenario_id": "support-0050",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "7f777727350bb7ee8a943f88897b60ea",
+          "scenario_id": "support-0203",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        },
+        {
+          "trace_id": "3b5ee59b98f6e2c9f4c0b6b549e11948",
+          "scenario_id": "support-0216",
+          "method": "by_role",
+          "role": "support",
+          "reason": "uniform random within role support"
+        }
+      ],
+      "source": "traces/support_traces.json"
+    },
+    {
+      "name": "batch3",
+      "label": "Batch 3: depth search",
+      "method": "situation filters per weak mode, random within each pool; review decides positive or close negative",
+      "target": 25,
+      "seed": 20261111,
+      "pools": {
+        "refund_not_issued_after_eligible": {
+          "filter": "refund intent and get_order returned refund_eligible true",
+          "size": 16
+        },
+        "inconsistent_record_not_flagged": {
+          "filter": "scenario built on a data-quality record (record_state dq_*)",
+          "size": 23
+        },
+        "required_escalation_missing": {
+          "filter": "account_change or dispute intent (ESC-2, ESC-3)",
+          "size": 19
+        },
+        "permission_denial_overexplained": {
+          "filter": "a tool returned permission_denied",
+          "size": 7
+        },
+        "wrong_policy_outcome": {
+          "filter": "policy lookup (search_help_center/get_policy) on a policy, refund, cancellation, or dispute request",
+          "size": 19
+        },
+        "search_query_misbuilt": {
+          "filter": "search_products returned 0 results; then search_products with results as close negatives",
+          "size": 25
+        }
+      },
+      "selected_at": "2026-11-13T08:06:34.923891+00:00",
+      "picks": [
+        {
+          "trace_id": "f785c18965af4354c81a973d5c77dfc8",
+          "scenario_id": "support-0236",
+          "method": "depth_search",
+          "mode": "refund_not_issued_after_eligible",
+          "reason": "depth search for refund_not_issued_after_eligible: refund intent and get_order returned refund_eligible true"
+        },
+        {
+          "trace_id": "a79a8a4255c3013733d7f6592ab0e0fd",
+          "scenario_id": "support-0250",
+          "method": "depth_search",
+          "mode": "refund_not_issued_after_eligible",
+          "reason": "depth search for refund_not_issued_after_eligible: refund intent and get_order returned refund_eligible true"
+        },
+        {
+          "trace_id": "fc0b1fcb9d30ef6e71c16f269613c488",
+          "scenario_id": "support-0056",
+          "method": "depth_search",
+          "mode": "refund_not_issued_after_eligible",
+          "reason": "depth search for refund_not_issued_after_eligible: refund intent and get_order returned refund_eligible true"
+        },
+        {
+          "trace_id": "80b05934cd469490cab8e7111c49669a",
+          "scenario_id": "support-0059",
+          "method": "depth_search",
+          "mode": "refund_not_issued_after_eligible",
+          "reason": "depth search for refund_not_issued_after_eligible: refund intent and get_order returned refund_eligible true"
+        },
+        {
+          "trace_id": "12187ec888ec532ca9318d4930c097fa",
+          "scenario_id": "support-0053",
+          "method": "depth_search",
+          "mode": "inconsistent_record_not_flagged",
+          "reason": "depth search for inconsistent_record_not_flagged: scenario built on a data-quality record (record_state dq_*)"
+        },
+        {
+          "trace_id": "01c807d757d9e9f254d0f6e5962117b4",
+          "scenario_id": "support-0156",
+          "method": "depth_search",
+          "mode": "inconsistent_record_not_flagged",
+          "reason": "depth search for inconsistent_record_not_flagged: scenario built on a data-quality record (record_state dq_*)"
+        },
+        {
+          "trace_id": "991dd73611dc8fcf48c603a8fd8968d4",
+          "scenario_id": "support-0095",
+          "method": "depth_search",
+          "mode": "inconsistent_record_not_flagged",
+          "reason": "depth search for inconsistent_record_not_flagged: scenario built on a data-quality record (record_state dq_*)"
+        },
+        {
+          "trace_id": "91366faadd2cc350a2e61e7e15b3cae9",
+          "scenario_id": "support-0221",
+          "method": "depth_search",
+          "mode": "inconsistent_record_not_flagged",
+          "reason": "depth search for inconsistent_record_not_flagged: scenario built on a data-quality record (record_state dq_*)"
+        },
+        {
+          "trace_id": "e4024965e5671d4eae94483c06305ee9",
+          "scenario_id": "support-0243",
+          "method": "depth_search",
+          "mode": "required_escalation_missing",
+          "reason": "depth search for required_escalation_missing: account_change or dispute intent (ESC-2, ESC-3)"
+        },
+        {
+          "trace_id": "1b6b4923ae9919abca088b2152fc804e",
+          "scenario_id": "support-0066",
+          "method": "depth_search",
+          "mode": "required_escalation_missing",
+          "reason": "depth search for required_escalation_missing: account_change or dispute intent (ESC-2, ESC-3)"
+        },
+        {
+          "trace_id": "f1f33c068d2df8269ef337b25a9922b3",
+          "scenario_id": "support-0081",
+          "method": "depth_search",
+          "mode": "required_escalation_missing",
+          "reason": "depth search for required_escalation_missing: account_change or dispute intent (ESC-2, ESC-3)"
+        },
+        {
+          "trace_id": "1068d048be3c460c9caba17c57170927",
+          "scenario_id": "support-0039",
+          "method": "depth_search",
+          "mode": "required_escalation_missing",
+          "reason": "depth search for required_escalation_missing: account_change or dispute intent (ESC-2, ESC-3)"
+        },
+        {
+          "trace_id": "53c454fa9625244a5f5510d3addbde6a",
+          "scenario_id": "support-0013",
+          "method": "depth_search",
+          "mode": "permission_denial_overexplained",
+          "reason": "depth search for permission_denial_overexplained: a tool returned permission_denied"
+        },
+        {
+          "trace_id": "aa65562498394e36e6e75a29d217870d",
+          "scenario_id": "support-0168",
+          "method": "depth_search",
+          "mode": "permission_denial_overexplained",
+          "reason": "depth search for permission_denial_overexplained: a tool returned permission_denied"
+        },
+        {
+          "trace_id": "9da00898cb886c94ff8d3eeb3e0c9c69",
+          "scenario_id": "support-0208",
+          "method": "depth_search",
+          "mode": "permission_denial_overexplained",
+          "reason": "depth search for permission_denial_overexplained: a tool returned permission_denied"
+        },
+        {
+          "trace_id": "3cf7d77c3e13fbe0b22ab5c3fd173aef",
+          "scenario_id": "support-0083",
+          "method": "depth_search",
+          "mode": "permission_denial_overexplained",
+          "reason": "depth search for permission_denial_overexplained: a tool returned permission_denied"
+        },
+        {
+          "trace_id": "acf6a2cc80a416859ed7b6944f90480c",
+          "scenario_id": "support-0224",
+          "method": "depth_search",
+          "mode": "permission_denial_overexplained",
+          "reason": "depth search for permission_denial_overexplained: a tool returned permission_denied"
+        },
+        {
+          "trace_id": "1e98900016e99e3ffb94a1a5cc458d1c",
+          "scenario_id": "support-0072",
+          "method": "depth_search",
+          "mode": "wrong_policy_outcome",
+          "reason": "depth search for wrong_policy_outcome: policy lookup (search_help_center/get_policy) on a policy, refund, cancellation, or dispute request"
+        },
+        {
+          "trace_id": "0914e52f8820a92a89fd1377c0ca90c1",
+          "scenario_id": "support-0129",
+          "method": "depth_search",
+          "mode": "wrong_policy_outcome",
+          "reason": "depth search for wrong_policy_outcome: policy lookup (search_help_center/get_policy) on a policy, refund, cancellation, or dispute request"
+        },
+        {
+          "trace_id": "813a96bbc57c18bd9af0919b4b46cb50",
+          "scenario_id": "support-0035",
+          "method": "depth_search",
+          "mode": "wrong_policy_outcome",
+          "reason": "depth search for wrong_policy_outcome: policy lookup (search_help_center/get_policy) on a policy, refund, cancellation, or dispute request"
+        },
+        {
+          "trace_id": "4b274a46f7fecbaf15dd02a5b1fc1c24",
+          "scenario_id": "support-0067",
+          "method": "depth_search",
+          "mode": "wrong_policy_outcome",
+          "reason": "depth search for wrong_policy_outcome: policy lookup (search_help_center/get_policy) on a policy, refund, cancellation, or dispute request"
+        },
+        {
+          "trace_id": "b10bd8ac04e0bc460363f4313b902063",
+          "scenario_id": "support-0068",
+          "method": "depth_search",
+          "mode": "search_query_misbuilt",
+          "reason": "depth search for search_query_misbuilt: search_products returned 0 results; then search_products with results as close negatives"
+        },
+        {
+          "trace_id": "6eb6d370bff5588d30984bf905317425",
+          "scenario_id": "support-0162",
+          "method": "depth_search",
+          "mode": "search_query_misbuilt",
+          "reason": "depth search for search_query_misbuilt: search_products returned 0 results; then search_products with results as close negatives"
+        },
+        {
+          "trace_id": "ccee3f0b1485eada5c2c30729980aa59",
+          "scenario_id": "support-0087",
+          "method": "depth_search",
+          "mode": "search_query_misbuilt",
+          "reason": "depth search for search_query_misbuilt: search_products returned 0 results; then search_products with results as close negatives"
+        },
+        {
+          "trace_id": "714f78190ac1164c7f9c04074165a3d2",
+          "scenario_id": "support-0028",
+          "method": "depth_search",
+          "mode": "search_query_misbuilt",
+          "reason": "depth search for search_query_misbuilt: search_products returned 0 results; then search_products with results as close negatives"
+        }
+      ],
+      "source": "traces/support_traces.json"
+    },
+    {
+      "name": "batch4",
+      "label": "Batch 4: final uniform (saturation)",
+      "method": "15 uniform random from conversations not in an earlier batch; checks whether new consequential modes still appear",
+      "target": 15,
+      "seed": 20261111,
+      "selected_at": "2026-11-13T11:27:17.563126+00:00",
+      "picks": [
+        {
+          "trace_id": "2c406205e0372b469c3990f193e95e42",
+          "scenario_id": "support-0172",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "49daa158051969ab954cc80389860292",
+          "scenario_id": "support-0114",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "6361dc3f798caa82763af429bf64fc03",
+          "scenario_id": "support-0140",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "58a8a1c0d103dcb5c74570840d055e38",
+          "scenario_id": "support-0065",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "0d32db8975da72c6a78ce2237c288ac3",
+          "scenario_id": "support-0177",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "99ce7fab401abeba2ace74975fa11842",
+          "scenario_id": "support-0132",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "3c7f54b2871f04082c544770e7fa21b7",
+          "scenario_id": "support-0226",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "a7d54769d0c46ceda97bb18846adc50e",
+          "scenario_id": "support-0046",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "66cfd9e8b8759ce46e072647d8eb22b0",
+          "scenario_id": "support-0078",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "06d4f4e9a8533ec556f3ff26644dbfc0",
+          "scenario_id": "support-0026",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "a3120c32a205e81258aeb40b96c7a75c",
+          "scenario_id": "support-0014",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "7eeab3dd6c64c8b4a6d96c5a9e7f7c6c",
+          "scenario_id": "support-0181",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "f08cebc0f92e1fe09b23c4ba4c90243b",
+          "scenario_id": "support-0182",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "08c645bf2483644675b3d60e8632dec1",
+          "scenario_id": "support-0110",
+          "method": "uniform",
+          "reason": "uniform random"
+        },
+        {
+          "trace_id": "cc58638af741a02a8b1f636693a1a139",
+          "scenario_id": "support-0061",
+          "method": "uniform",
+          "reason": "uniform random"
+        }
+      ],
+      "source": "traces/support_traces.json",
+      "saturation": {
+        "new_consequential_unseen": 1,
+        "traces": [
+          "support-0078"
+        ],
+        "variants_of_existing": [
+          "support-0026 (eligible_action_not_taken, broadened)"
+        ],
+        "not_agent": [
+          "support-0226 (tool defect)",
+          "support-0046 (scenario defect)"
+        ],
+        "decision": "taxonomy reasonably stable; no further batch (student)",
+        "decided_at": "2026-11-13T12:05:19.454834+00:00"
+      }
+    }
+  ]
+}
